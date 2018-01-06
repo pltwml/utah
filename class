@@ -1,0 +1,30 @@
+def do_t():
+    def do_loc():
+        x = "One"
+
+    def do_nonl():
+        #   Overshadows local x until its next assignment
+        nonlocal x
+        x = "Two"
+
+    def do_glob():
+        global x
+        #   Inaccesible from within fun
+        x = "Three"
+
+    x = "Four"
+    do_loc()
+    print("loc: ", x)
+
+    do_nonl()
+    print("nonl: ", x)
+
+    do_glob()
+    print("glob: ", x)
+
+    #    x = "Five"
+    print("Second local assignment: ", x)
+
+
+do_t()
+print("glob outside do_t(): ", x)
